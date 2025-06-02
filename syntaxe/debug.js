@@ -4,10 +4,12 @@ let a1 = 10
 let a2 = 20
 // Nous calculons le total
 let tot = a1 + a2
+//console.log(tot)
 // Prix d'un troisieme article
-let a3 = "50"
+let a3 = 50
+//console.log(a3)
 // Nous ajoutons a3 au total
-tot == tot + a3
+tot += a3
 
 console.log("Le prix total avant reduction est de : ", tot)
 

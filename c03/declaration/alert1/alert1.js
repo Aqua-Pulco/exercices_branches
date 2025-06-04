@@ -5,9 +5,6 @@ let pseudo = "iris";
 
 alert(`Bonjour ${pseudo} ${fullname}`);
 
-
-
-
 // let fullname = "yolal";
 // let pseudo = "iris";
 

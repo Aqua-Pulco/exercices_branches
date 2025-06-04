@@ -3,8 +3,17 @@
 let fullname = "yolal";
 let pseudo = "iris";
 
-function p1 (nom, prenom){
-alert(`Bonjour, ${nom} ${prenom}`)
-}
+alert(`Bonjour ${pseudo} ${fullname}`);
 
-console.log(p1(pseudo,fullname));
+
+
+
+// let fullname = "yolal";
+// let pseudo = "iris";
+
+// function alert (nom, prenom){
+// return(`Bonjour, ${nom} ${prenom}.`)
+// }
+
+// console.log(alert(pseudo,fullname));
+

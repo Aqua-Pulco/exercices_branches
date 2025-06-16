@@ -10,7 +10,7 @@
 
 function sendMessage (message, fromName, toName)
 {
- return("From : " + fromName + "to : " + toName + " Message : " + message);
+ return("From : " + fromName + ", to : " + toName + ", Message : " + message);
 
 }
 

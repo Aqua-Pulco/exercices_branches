@@ -1,0 +1,20 @@
+body{
+    background-color: pink;
+}
+
+div { /* <- selecteur */
+    text-align: center;
+	font-family: 'Comic Sans MS'; /* <- propriété */
+	font-size: 120%;
+    color: hotpink;
+}
+img {
+border-radius: 50%;
+border: 5px solid;
+border-color: hotpink;
+
+}
+#text {
+
+    width: 99%;
+}

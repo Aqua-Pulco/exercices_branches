@@ -17,26 +17,20 @@ const horoscope = [
   }
 ];
 
-// a voir :
-
-// document.createElement
-// .textContent
-// .innerText
-// appendChild
-// for...of
-
 let horoscopeElement = document.getElementById("horoscope");
-const paragraphe =document.createElement("p");
-const titre2 =document.createElement("h2");
 
+for (let i = 0; i<horoscope.length;i++){  
+    const paragraphe =document.createElement("p");
+    const titre2 =document.createElement("h2");
+    titre2.innerText = horoscope[i].sign;
+    horoscopeElement.appendChild(titre2);
+    paragraphe.innerText = horoscope[i].description;
+    horoscopeElement.appendChild(paragraphe);
+ }
 
 console.log(horoscopeElement);
 
 
-for (let i = 0; i<horoscope.length;i++){
-  titre2.innerText = horoscope[i].sign;
-  paragraphe.innerText = horoscope[i].description;
-}
 
 
 

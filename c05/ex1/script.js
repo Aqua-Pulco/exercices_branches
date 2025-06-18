@@ -1,6 +1,7 @@
 const suscribeButton = document.getElementById("newsletter");
 const image = document.getElementById("img");
 const txt = document.querySelector("h1");
+
 console.log("hellooo, ca va ?");
 
 let buttonState = false;
@@ -11,11 +12,14 @@ suscribeButton.addEventListener("click", () => {
         image.style.display = "block";
         txt.style.display = "none";
         buttonState = true;
+        suscribeButton.innerText = "Unsubscribe";
     }
     else if (buttonState===true){
         image.style.display = "none";
         txt.style.display = "block";
         buttonState = false;
+        suscribeButton.innerText = "Subscribe";
+        
     }
 
 })

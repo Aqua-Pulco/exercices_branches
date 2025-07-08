@@ -21,17 +21,15 @@ const horoscope = [
 let horoscopeElement = document.getElementById("horoscope");
 console.log(horoscopeElement);
 
-
-
-for (const item of horoscope) { //Parcours chaque élément du horoscope, et à chaque tour, mets-le dans une variable temporaire que j'appelle item.
-   const paragraphe =document.createElement("p");
-   const titre2 =document.createElement("h2");
-   titre2.innerText = item.sign;
-   horoscopeElement.appendChild(titre2);
+for (const item of horoscope) { //Parcours chaque élément de horoscope, et à chaque tour, mets-le dans une variable temporaire que j'appelle item.
+   
+  const paragraphe =document.createElement("p");
+   const titre2 =document.createElement("h2");//crée une boite vide
+   titre2.innerText = item.sign;// met du texte dans ma boite
+   horoscopeElement.appendChild(titre2);// où je le mets
    paragraphe.innerText = item.description;
-   horoscopeElement.appendChild(paragraphe);
-   console.log(item.sign);
-   console.log(item.description);
+  horoscopeElement.appendChild(paragraphe);
+  
 }
 
 // for (let i = 0; i<horoscope.length;i++){  

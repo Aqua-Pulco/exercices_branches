@@ -14,12 +14,12 @@ function canDrive(name, age) {
         return `${name} can't drive ! 🚨`
     }
     else if (age > 90 && age < 120){
-        console.log(`${name} can drive ... but might not be the best idea 🦼`)
-        return `${name} can drive ... but might not be the best idea 🦼👴🧓`
+        console.log(`${name} can drive... but might not be the best idea 🦼`)
+        return `${name} can drive... but might not be the best idea 🦼`
     }
     else if (age > 120){
-        console.log(`${name} can drive ...\nbut might be a little dead 👻`)
-        return `${name} can drive ...\nbut might be a little dead 👻`
+        console.log(`${name} can drive ... but might be a little dead 👻`)
+        return `${name} can drive ... but might be a little dead 👻`
     }
     else {
         console.log(`${name} can drive ! 🏁`)

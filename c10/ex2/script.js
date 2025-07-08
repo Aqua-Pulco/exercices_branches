@@ -1,4 +1,4 @@
-//NEXT : Qd rien ds input
+//NEXT : css
 
 const body = document.getElementById("body");
 const form = document.getElementById("form");
@@ -48,6 +48,10 @@ form.addEventListener("submit", (e) => {
         effaceChampInput("nom");
         effaceChampInput("age");
         return;
+    }
+
+    if (inputNom === "" || inputAge === ""){
+        return
     }
 
     let result = canDrive(inputNom, inputAge);

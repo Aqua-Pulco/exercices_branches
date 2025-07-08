@@ -1,0 +1,58 @@
+//NEXT : recupere Input
+
+const body = document.getElementById("body");
+const form = document.getElementById("form");
+const div = document.getElementById("div");
+const submit = document.getElementById("button");
+
+const titre = nouvelleBalise("h1", "Can you drive?", body);
+body.insertBefore(titre, form);
+
+
+function canDrive(name, age) { // revoir ca avant de l'appeler dans eventListener
+  if(age < 18){
+    console.log(`${name} can't drive ! 🚨`)
+    return `${name} can't drive ! 🚨`
+}
+else {
+    console.log(`${name} can drive ! 🏁`)
+    return `${name} can drive ! 🏁`
+}   
+}
+
+function nouvelleBalise(typeBalise, texte, id) {
+    let element = document.createElement(`${typeBalise}`);
+    element.innerText = texte;
+    return id.appendChild(element);
+}
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    let inputNom = document.getElementById("nom").value;
+    let inputAge = document.getElementById("age").value;
+        while (isNaN(inputAge)){
+            return ;   
+        }
+
+    let result = canDrive(inputNom, inputAge);
+    console.log(result);
+
+    nouvelleBalise("p", result, div);
+
+    console.log(inputNom);
+    console.log(inputAge);
+    console.log(canDrive(inputNom, inputAge));
+   
+    inputAge = "";
+    inputNom = "";
+    
+})
+
+
+
+// console.log(canDrive("Robert", 68));
+// document.getElementById("p2").innerText = canDrive("Jaqueline", 72);
+// document.getElementById("p3").innerText = canDrive("Matthis", 12);
+// document.getElementById("p4").innerText = canDrive("Anaïs", 16);
+

@@ -10,14 +10,19 @@ body.insertBefore(titre, form);
 
 
 function canDrive(name, age) { // revoir ca avant de l'appeler dans eventListener
-  if(age < 18){
-    console.log(`${name} can't drive ! 🚨`)
-    return `${name} can't drive ! 🚨`
+    if (age < 18) {
+        console.log(`${name} can't drive ! 🚨`)
+        return `${name} can't drive ! 🚨`
+    }
+    else {
+        console.log(`${name} can drive ! 🏁`)
+        return `${name} can drive ! 🏁`
+    }
 }
-else {
-    console.log(`${name} can drive ! 🏁`)
-    return `${name} can drive ! 🏁`
-}   
+
+
+function effaceChampInput(id1) {
+    return document.getElementById(`${id1}`).value = "";
 }
 
 function nouvelleBalise(typeBalise, texte, id) {
@@ -26,14 +31,17 @@ function nouvelleBalise(typeBalise, texte, id) {
     return id.appendChild(element);
 }
 
+
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     let inputNom = document.getElementById("nom").value;
     let inputAge = document.getElementById("age").value;
-        while (isNaN(inputAge)){
-            return ;   
-        }
+    while (isNaN(inputAge)) {
+        effaceChampInput("nom");
+        effaceChampInput("age");
+        return;
+    }
 
     let result = canDrive(inputNom, inputAge);
     console.log(result);
@@ -43,10 +51,10 @@ form.addEventListener("submit", (e) => {
     console.log(inputNom);
     console.log(inputAge);
     console.log(canDrive(inputNom, inputAge));
-   
-    inputAge = "";
-    inputNom = "";
-    
+
+    effaceChampInput("nom");
+    effaceChampInput("age");
+
 })
 
 

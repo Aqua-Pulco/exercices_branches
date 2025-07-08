@@ -1,4 +1,4 @@
-//NEXT : recupere Input
+//NEXT : Qd rien ds input
 
 const body = document.getElementById("body");
 const form = document.getElementById("form");
@@ -8,11 +8,18 @@ const submit = document.getElementById("button");
 const titre = nouvelleBalise("h1", "Can you drive?", body);
 body.insertBefore(titre, form);
 
-
-function canDrive(name, age) { // revoir ca avant de l'appeler dans eventListener
+function canDrive(name, age) {
     if (age < 18) {
         console.log(`${name} can't drive ! 🚨`)
         return `${name} can't drive ! 🚨`
+    }
+    else if (age > 90 && age < 120){
+        console.log(`${name} can drive ... but might not be the best idea 🦼`)
+        return `${name} can drive ... but might not be the best idea 🦼👴🧓`
+    }
+    else if (age > 120){
+        console.log(`${name} can drive ...\nbut might be a little dead 👻`)
+        return `${name} can drive ...\nbut might be a little dead 👻`
     }
     else {
         console.log(`${name} can drive ! 🏁`)

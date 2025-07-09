@@ -1,16 +1,16 @@
-let letters = [ 'A', 'd', 'a', '-', 'T', 'e', 'c', 'h']
-let letters2 = [ 'A', 'd', 'a', '-', 'S', 'c', 'h', 'o', 'o', 'l']
-
-
-let message = "";
-
-
-function readMessage(tab){
-for (let i = 0; i < tab.length; i++) {
-    const message = tab[i];
-    console.log(message)
+function readMessage(tab) {
+    let message = "";
+    for (let i = 0; i < tab.length; i++) {
+        message = message + tab[i];
+    }
+    return message
 }
-}
-readMessage(letters);
+
+let letters = ['A', 'd', 'a', '-', 'T', 'e', 'c', 'h']
+
+console.log(readMessage(letters));
 console.log(' ')
-readMessage(letters2);
+
+letters = ['A', 'd', 'a', '-', 'S', 'c', 'h', 'o', 'o', 'l']
+
+console.log(readMessage(letters));

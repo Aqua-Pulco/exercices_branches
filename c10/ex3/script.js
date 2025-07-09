@@ -21,6 +21,8 @@ switch (true) {
         console.log("we all gonna die");
         break;
 }
+
+
 // function howIsIt(temp) {
 //     if (temp < 0)   
 //         return ("Freezing weather.");

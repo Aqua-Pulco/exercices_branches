@@ -7,10 +7,9 @@ function readMessage(tab) {
 }
 
 let letters = ['A', 'd', 'a', '-', 'T', 'e', 'c', 'h']
-
 console.log(readMessage(letters));
+
 console.log(' ')
 
 letters = ['A', 'd', 'a', '-', 'S', 'c', 'h', 'o', 'o', 'l']
-
 console.log(readMessage(letters));

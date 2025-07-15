@@ -15,3 +15,10 @@ for (const element of data) {
             console.log(element);;
         }
 }
+let ages = 0;
+for (const element of data) {
+ages = ages + parseInt(element.age);
+}
+const ageMyen = ages/data.length;
+console.log(ageMyen);
+

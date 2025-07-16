@@ -1,16 +1,14 @@
 
 const div = document.getElementById("div");
-
+let titre = nouvelleBalise("h1", "chargement...", div); // affiche chargement... 
+titre.id = "titre"; //id pour modifier titre ultérieurement
+//console.log(titre)
 
 function nouvelleBalise(type, texte, id) {
     let element = document.createElement(`${type}`);
     element.innerText = texte;
     return id.appendChild(element);
 }
-
-let titre = nouvelleBalise("h1", "chargement...", div); // affiche chargement... 
-titre.id = "titre"; //id pour modifier titre ultérieurement
-console.log(titre)
 
 async function firstFetch() {
     const promise = await fetch('https://www.codepassport.dev/api/offers');
@@ -24,11 +22,7 @@ async function firstFetch() {
 
 }
 
-
 firstFetch()
-
-
-
 
 // si une fonction est asynchrone elle retourne une promesse alors si pon veut recup une donnée on doit : AWAIT
 

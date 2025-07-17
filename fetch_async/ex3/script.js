@@ -16,6 +16,6 @@ const recipes = await getDummyData(routes[0])
 //console.log(recipes.recipes);
 console.log("total", recipes.total); //nbr total de recettes
 console.log("skip", recipes.skip); // nbr de recettes ignorées ! c'est possible apparemment
-console.log("limit", recipes.limit);
+console.log("limit", recipes.limit); //30 > il m'en manque 20 > pour les obtenir : const resAll = await fetch('https://dummyjson.com/recipes?limit=50');
 console.log("Clés au niveau racine :", Object.keys(recipes)); // choppe les clefs
 console.log("clés pour la 1ere recette", Object.keys(recipes.recipes[0]));

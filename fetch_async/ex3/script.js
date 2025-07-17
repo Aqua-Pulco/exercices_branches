@@ -11,11 +11,25 @@ async function getDummyData(route) {
     const data = await response.json();
     return data;
 }
-const recipes = await getDummyData(routes[0])
+const data = await getDummyData(routes[0])
 
 //console.log(recipes.recipes);
-console.log("total", recipes.total); //nbr total de recettes
-console.log("skip", recipes.skip); // nbr de recettes ignorées ! c'est possible apparemment
-console.log("limit", recipes.limit); //30 > il m'en manque 20 > pour les obtenir : const resAll = await fetch('https://dummyjson.com/recipes?limit=50');
-console.log("Clés au niveau racine :", Object.keys(recipes)); // choppe les clefs
-console.log("clés pour la 1ere recette", Object.keys(recipes.recipes[0]));
+console.log("total", data.total); //nbr total de recettes
+console.log("skip", data.skip); // nbr de recettes ignorées ! c'est possible apparemment
+console.log("limit", data.limit); //30 > il m'en manque 20 > pour les obtenir : const resAll = await fetch('https://dummyjson.com/recipes?limit=50');
+console.log("Clés au niveau racine :", Object.keys(data)); // choppe les clefs
+console.log("clés pour la 1ere recette", Object.keys(data.recipes[0]));
+
+
+const recettes = [];
+
+
+//tous les ingrédients de toutes les recettes
+for (const recette in data.recipes) {
+    console.log(data.recipes[recette].ingredients);
+}
+
+
+// les 2 premieres recettes 
+     
+

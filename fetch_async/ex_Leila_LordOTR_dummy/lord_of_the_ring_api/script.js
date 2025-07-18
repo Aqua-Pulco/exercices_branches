@@ -4,7 +4,6 @@ const div = document.querySelector("#div");
 const lordOfRefList = imdbRefs[0].films; //tab films lord of the ring ds annexe
 
 function lordOfRef(indice) {
-
   const movieRef = Object.values(lordOfRefList);
   const movieKey = Object.keys(lordOfRefList);
   console.log(movieKey[indice])// affiche la clé du film
@@ -27,12 +26,15 @@ function nouvelleBalise(type, texte, id) {
   return id.appendChild(element);
 }
 
-//nouvelleBalise("ul", "teeeext", div);
+let movieInfoList = nouvelleBalise("ul", "Exercice Leila", div);
 
+movieInfoList.id = "liste";
 
-let ref = lordOfRef(0);// on verra comment implementer NEXT
+console.log(movieInfoList)
+
+let ref = lordOfRef(0);
 const API_KEY = "738ca52d";
-const URL = buildUrl(ref);
+let URL = buildUrl(ref);
 console.log(URL);
 
  
@@ -40,11 +42,13 @@ console.log(URL);
 
 for (let i = 0; i < total ; i++) {
   ref = lordOfRef(i);
-  buildUrl(ref)
+  URL = buildUrl(ref);
     getData(URL).then((data) => {
+
     let titre = data.Title;
     let recette = data.BoxOffice;
-    nouvelleBalise("p", `${titre} a amené ${recette} de recettes à sa sortie`, div );
+
+    nouvelleBalise("li", `${titre} a amené ${recette} de recettes à sa sortie.`, liste);
   })
   
 }

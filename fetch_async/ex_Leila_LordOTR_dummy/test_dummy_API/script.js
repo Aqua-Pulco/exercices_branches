@@ -1,5 +1,7 @@
 const div = document.querySelector("#div");
 const div2 = document.querySelector("#div2");
+const next = document.querySelector("#next");
+const prev = document.querySelector("#prev");
 
 let recettes = [];
 let indexRecette = 0;
@@ -21,11 +23,11 @@ async function getAllRecipes() {
 
 function showOneRecipe(indice, data) {
   div.innerHTML = ""; //rafraichit la page précedente
- 
+
   const recette = data.recipes[indice];
   const clef = Object.keys(recette);//tab des 16 clefs
   const content = Object.values(recette);//tab des 16 valeurs
- 
+
   for (let i = 0; i < clef.length; i++) {//pour chaque recette
     let key = clef[i];
     let contenu = content[i];
@@ -35,9 +37,9 @@ function showOneRecipe(indice, data) {
       nouvelleBalise("b", ``, div);
     }
     else if (key === "instructions") {
-      let text = contenu.join(" ");
+      let textInstr = contenu.join(" ");
       nouvelleBalise("b", `${key} :`, div);
-      nouvelleBalise("p", text, div);
+      nouvelleBalise("p", textInstr, div);
     }
     else if (key === "name") {
       let h1 = nouvelleBalise("h1", `${contenu}\n\n`, div);
@@ -60,8 +62,28 @@ function showOneRecipe(indice, data) {
   }
 }
 
- getAllRecipes().then((data) => {
-  showOneRecipe(indexRecette,data)
+
+getAllRecipes().then((data) => {
+  console.log(data)
+  showOneRecipe(indexRecette, data);
+
+  next.addEventListener("click", () => {
+    indexRecette++;
+      if (indexRecette > 29) {
+    indexRecette = 29;
+  }
+    console.log(indexRecette)
+    showOneRecipe(indexRecette, data)
+  })
+  prev.addEventListener("click", () => {
+    indexRecette--;
+      if (indexRecette < 0) {
+    indexRecette = 0;
+  }
+    console.log(indexRecette)
+    showOneRecipe(indexRecette, data)
+  })
+
 })
-  
+
 

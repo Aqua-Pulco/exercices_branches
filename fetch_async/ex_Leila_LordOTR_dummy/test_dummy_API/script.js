@@ -1,64 +1,8 @@
 const div = document.querySelector("#div");
+const div2 = document.querySelector("#div2");
 
-// //---------------------------------------------------
-
-// let fiveFirstRecipes = [];
-// async function get5Reciepes() {
-
-//   const question = await fetch("https://dummyjson.com/recipes");
-//   const data = await question.json();
-
-//   const noms = data.recipes.map(recette => recette.name);
-
-//   for (let i = 0; i < 5; i++) {
-//     fiveFirstRecipes.push(noms[i]);
-//   }
-//   return fiveFirstRecipes;
-// }
-// get5Reciepes().then((data) => {
-//   console.log("___________________\n5 premieres recettes :")
-//   for (const element of data) {
-//     console.log("-", element);
-//   }
-// })
-
-// //---------------------------------------------------
-
-// let easyRecipies = [];
-// async function getEasyRecipes(data) {
-
-//   const recipes = await fetch("https://dummyjson.com/recipes");
-//   //console.log(recipes);
-//   data = await recipes.json();
-//   const dataElements = Object.keys(data.recipes);
-
-//   for (let i = 0; i < dataElements.length; i++) {
-//     if ((data.recipes[i].difficulty === 'Easy')) {
-//       easyRecipies.push(data.recipes[i]);
-//     }
-//   }
-//   return easyRecipies;
-// }
-
-
-// getEasyRecipes().then((data) => {
-//   console.log("___________________\nEasy Recipies :");
-  
-//   let tab = Object.keys(data);
-//   for (let i = 0; i < tab.length; i++) {
-//     console.log(data[i].name)
-//   }
-  
-// })
-
-// NEXT = affiche les recettes selon un critere = keys
-// 1 affiche recette
-// 2 affiche recette correctement
-// 3 affiche recette.s selon key
-// 4 affiche menu deroulant de keys
-// 5 affiche en fonction
-
-//---------------------------------------------------
+let recettes = [];
+let indexRecette = 0;
 
 function nouvelleBalise(type, texte, id) {
   let el = document.createElement(`${type}`);
@@ -75,51 +19,52 @@ async function getAllRecipes() {
   return data;
 }
 
+function showOneRecipe(indice, data) {
+  div.innerHTML = "";
+  const recette = data.recipes[indice];
+  const clef = Object.keys(recette);//tab des 16 clefs
+  const content = Object.values(recette);//tab des 16 valeurs
+  
+}
+
 
 getAllRecipes().then((data) => {
-  const recepiesNumber = Object.keys(data.recipes);
-  const recipieKeysNumber = (Object.keys(data.recipes[0]));
+ 
+  const recipieKeysNumber = (Object.keys(data.recipes[indexRecette]));
+    let clef = Object.keys(data.recipes[indexRecette]);//tab des 16 clefs
+    let content = Object.values(data.recipes[indexRecette]);//tab des 16 valeurs
 
-  for (let i = 0; i < recipieKeysNumber.length; i++) { 
-    let clef = Object.keys(data.recipes[i])
-    let content = Object.values(data.recipes[i])
-    let clé = clef[i];
+  for (let i = 0; i < recipieKeysNumber.length; i++) {//pour chaque recette
+    let key = clef[i];
     let contenu = content[i];
-    nouvelleBalise("p", `${clef[i]} : ${content[i]}`, div);
+
+    //CONTITIOOOONS PAS JOLI
+    if (key === "id") {
+      nouvelleBalise("b", ``, div);
     }
+    else if (key === "instructions") {
+      let text = contenu.join(" ");
+      nouvelleBalise("b", `${key} :`, div);
+      nouvelleBalise("p", text, div);
+    }
+    else if (key === "name") {
+      let h1 = nouvelleBalise("h1", `${contenu}\n\n`, div);
+      h1.id = "h1";
+      console.log(h1)
+    }
+    else if (key === "image") {
+      const tab = Object.values(contenu);
+      const text = tab.join(""); console.log(text);
+      const balise = nouvelleBalise("img", text, h1);
+      balise.src = text;
+      balise.className = "img";
+    }
+    else if (key === "tags" || key === "reviewCount" || key === "userId") {
+    }
+    else {
+      nouvelleBalise("b", `${key} : `, div);
+      nouvelleBalise("a", `${contenu}\n\n`, div);
+    }
+  }
 
-  })
-
-RENDU : 
-
-// id : 1
-
-// name : Vegetarian Stir-Fry
-
-// ingredients : All-purpose flour,Butter, softened,Brown sugar,White sugar,Eggs,Vanilla extract,Baking soda,Salt,Chocolate chips
-
-// instructions : Cook fettuccine pasta according to package instructions.,In a pan, sauté sliced chicken in butter until fully cooked.,Add minced garlic and cook until fragrant.,Pour in heavy cream and grated Parmesan cheese. Stir until the cheese is melted.,Season with salt and pepper to taste.,Combine the Alfredo sauce with cooked pasta.,Garnish with fresh parsley before serving.
-
-// prepTimeMinutes : 15
-
-// cookTimeMinutes : 15
-
-// servings : 6
-
-// difficulty : Medium
-
-// cuisine : Italian
-
-// caloriesPerServing : 400
-
-// tags : Biryani,Chicken,Main course,Indian,Pakistani,Asian
-
-// userId : 49
-
-// image : https://cdn.dummyjson.com/recipe-images/13.webp
-
-// rating : 4.7
-
-// reviewCount : 86
-
-// mealType : Dinner
+})

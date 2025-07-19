@@ -12,8 +12,18 @@ function nouvelleBalise(type, texte, id) {
   return id.appendChild(el);
 }
 
-
-// nouvelleBalise("p",data[0].name, div );
+// fonction pour la suite "Ingredients" en particulier
+function toLowerTabText(tab) {
+  let tab2 = []
+  for (let i = 0; i < tab.length; i++) {
+    if (i > 0) {
+      const el = tab[i].toLowerCase()
+      tab2.push(el)
+    } else { tab2.push(tab[i]) }
+  }
+  let finalText = tab2.join(", ");
+  return finalText
+}
 
 async function getAllRecipes() {
   const reponse = await fetch("https://dummyjson.com/recipes");
@@ -22,68 +32,71 @@ async function getAllRecipes() {
 }
 
 function showOneRecipe(indice, data) {
-  div.innerHTML = ""; //rafraichit la page précedente
-
+  div.innerHTML = ""; //efface l'affichage précedent de div
+  
   const recette = data.recipes[indice];
   const clef = Object.keys(recette);//tab des 16 clefs
   const content = Object.values(recette);//tab des 16 valeurs
+  let h1; // pour name.id, pour img en dessous
+ 
 
-  for (let i = 0; i < clef.length; i++) {//pour chaque recette
+  for (let i = 0; i < clef.length; i++) {//pour chaque clefs d1recette
     let key = clef[i];
     let contenu = content[i];
-
-    //CONTITIOOOONS PAS JOLI
-    if (key === "id") {
-      nouvelleBalise("b", ``, div);
+    //CONTITIONS affichage html PAS JOLI 👀
+    if (key === "name") {
+      h1 = nouvelleBalise("h1", `${contenu}\n\n`, div);
+      h1.id = "h1";
+      //console.log(h1);
+    }
+    else if (key === "ingredients") {
+      let textIngr = toLowerTabText(contenu);
+      nouvelleBalise("b", `${key} : `, div);
+      nouvelleBalise("a", `${textIngr}.\n\n`, div);
     }
     else if (key === "instructions") {
       let textInstr = contenu.join(" ");
       nouvelleBalise("b", `${key} :`, div);
       nouvelleBalise("p", textInstr, div);
     }
-    else if (key === "name") {
-      let h1 = nouvelleBalise("h1", `${contenu}\n\n`, div);
-      h1.id = "h1";
-      console.log(h1)
-    }
     else if (key === "image") {
-      const tab = Object.values(contenu);
-      const text = tab.join(""); console.log(text);
-      const balise = nouvelleBalise("img", text, h1);
-      balise.src = text;
-      balise.className = "img";
+      const balise = nouvelleBalise("img", contenu, h1);
+      balise.src = contenu;
+      balise.className = "imgRecipe";
     }
-    else if (key === "tags" || key === "reviewCount" || key === "userId") {
+    else if (key === "id" || key === "tags" || key === "reviewCount" || key === "userId") {
     }
     else {
       nouvelleBalise("b", `${key} : `, div);
-      nouvelleBalise("a", `${contenu}\n\n`, div);
+      nouvelleBalise("a", `${contenu}.\n\n`, div);
     }
   }
 }
 
 
 getAllRecipes().then((data) => {
-  console.log(data)
+  const nMax = data.recipes.length - 1;
+  const nMin = 0;
   showOneRecipe(indexRecette, data);
 
-  next.addEventListener("click", () => {
+  next.addEventListener("click", () => { //next clic
     indexRecette++;
-      if (indexRecette > 29) {
-    indexRecette = 29;
-  }
-    console.log(indexRecette)
-    showOneRecipe(indexRecette, data)
+    if (indexRecette > nMax) { //
+      indexRecette = nMax;
+
+    }
+
+    showOneRecipe(indexRecette, data);
   })
-  prev.addEventListener("click", () => {
+
+  prev.addEventListener("click", () => { //prev clic
     indexRecette--;
-      if (indexRecette < 0) {
-    indexRecette = 0;
-  }
-    console.log(indexRecette)
-    showOneRecipe(indexRecette, data)
+    if (indexRecette < nMin) {
+      indexRecette = nMin;
+
+    }
+
+    showOneRecipe(indexRecette, data);
+
   })
-
 })
-
-

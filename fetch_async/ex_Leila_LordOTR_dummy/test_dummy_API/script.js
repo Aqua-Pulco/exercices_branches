@@ -20,21 +20,13 @@ async function getAllRecipes() {
 }
 
 function showOneRecipe(indice, data) {
-  div.innerHTML = "";
+  div.innerHTML = ""; //rafraichit la page précedente
+ 
   const recette = data.recipes[indice];
   const clef = Object.keys(recette);//tab des 16 clefs
   const content = Object.values(recette);//tab des 16 valeurs
-  
-}
-
-
-getAllRecipes().then((data) => {
  
-  const recipieKeysNumber = (Object.keys(data.recipes[indexRecette]));
-    let clef = Object.keys(data.recipes[indexRecette]);//tab des 16 clefs
-    let content = Object.values(data.recipes[indexRecette]);//tab des 16 valeurs
-
-  for (let i = 0; i < recipieKeysNumber.length; i++) {//pour chaque recette
+  for (let i = 0; i < clef.length; i++) {//pour chaque recette
     let key = clef[i];
     let contenu = content[i];
 
@@ -66,5 +58,10 @@ getAllRecipes().then((data) => {
       nouvelleBalise("a", `${contenu}\n\n`, div);
     }
   }
+}
 
+ getAllRecipes().then((data) => {
+  showOneRecipe(indexRecette,data)
 })
+  
+

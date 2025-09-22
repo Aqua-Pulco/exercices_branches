@@ -6,6 +6,19 @@ const prev = document.querySelector("#prev");
 let recettes = [];
 let indexRecette = 0;
 
+
+function getLocalHash(){
+  const hashBrut = location.hash;
+  console.log(hashBrut)
+  if(!hashBrut) return
+  const HASH = hashBrut.slice(1);
+  if(isNaN(HASH)) return
+  const hashOk = parseInt(HASH, 10);
+  console.log("hash ok:", hashOk)
+  return hashOk 
+}
+
+
 function nouvelleBalise(type, texte, id) {
   let el = document.createElement(`${type}`);
   el.innerText = texte;
@@ -73,7 +86,6 @@ function showOneRecipe(indice, data) {
   }
 }
 
-
 getAllRecipes().then((data) => {
   const nMax = data.recipes.length - 1;
   const nMin = 0;
@@ -81,22 +93,52 @@ getAllRecipes().then((data) => {
 
   next.addEventListener("click", () => { //next clic
     indexRecette++;
+    location.hash = indexRecette;
     if (indexRecette > nMax) { //
       indexRecette = nMax;
-
+       location.hash = indexRecette;
     }
-
+    console.log(getLocalHash());
     showOneRecipe(indexRecette, data);
   })
 
   prev.addEventListener("click", () => { //prev clic
     indexRecette--;
+    location.hash = indexRecette;
     if (indexRecette < nMin) {
       indexRecette = nMin;
-
+       location.hash = indexRecette;
     }
-
+    console.log(getLocalHash());
     showOneRecipe(indexRecette, data);
 
   })
 })
+
+
+
+
+
+
+// const objet = tableau.find( (element) => conditionVraieOuFausse );
+// const users = [{id:1},{id:5},{id:9}];
+// const u = users.find(u => u.id === 5);   // -> { id:5 }
+
+// Tu veux l’OBJET lui‑même	find
+// Tu veux juste sa POSITION (index)	findIndex
+
+// const position = tableau.findIndex( (element) => conditionVraieOuFausse );
+// const users = [{id:1},{id:5},{id:9}];
+// const pos = users.findIndex(u => u.id === 5);   // -> 1
+
+// 7. Checklist pour toi
+
+// Quand tu voudras brancher ça :
+
+//     Tu récupères hashOk (tu le fais déjà).
+
+//     Tu fais const pos = data.recipes.findIndex(r => r.id === hashOk);
+
+//     Si pos !== -1 → indexRecette = pos;
+
+//     Puis showOneRecipe(indexRecette, data);

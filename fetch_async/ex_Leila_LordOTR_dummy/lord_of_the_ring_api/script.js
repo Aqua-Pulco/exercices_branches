@@ -21,9 +21,9 @@ async function getData(url) {
 }
 
 function nouvelleBalise(type, texte, id) {
-  let element = document.createElement(`${type}`);
-  element.innerText = texte;
-  return id.appendChild(element);
+  let el = document.createElement(`${type}`);
+  el.innerText = texte;
+  return id.appendChild(el);
 }
 
 let movieInfoList = nouvelleBalise("ul", "Exercice Leila", div);
